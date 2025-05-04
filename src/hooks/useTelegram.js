@@ -15,5 +15,5 @@ export function useTelegram() {
         }
     };
 
-    return { tg, onClose, onToggleButton, user:tg.initDataUnsafe?.user };
+    return { tg, onClose, onToggleButton, user:tg.initDataUnsafe?.user, queryId:tg.initDataUnsafe?.query_id };
 }

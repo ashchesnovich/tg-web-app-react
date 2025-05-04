@@ -74,8 +74,32 @@ const getTotalPrice = (items) => {
 }
 
 const ProductList = () => {
+    
+    const {tg, queryId} = useTelegram();
+    const onSendData = useCallback(()=>{
+        const data = {
+            products: addedItems,
+            totalPrice: getTotalPrice(addedItems),
+            queryId
+        }
+        fetch('https://localhost:8000', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+    }, [tg, queryId])
+
+    useEffect(()=>{
+        tg.onEvent('mainButtonClicked', onSendData)
+        return()=>{
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    },[tg, onSendData])
+
     const [addedItems, setAddedItems] = useState([]);
-    const {tg} = useTelegram();
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
         let newItems = [];
@@ -98,6 +122,10 @@ const ProductList = () => {
             })
         }
     }
+
+
+
+
 
     return (
         <div className={'list'}>
