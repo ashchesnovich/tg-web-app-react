@@ -15,7 +15,6 @@ function App() {
 
   return (
     <div className="App">
-      work
       <button onClick={onToggleButton}>Close</button>
     </div>
   );
