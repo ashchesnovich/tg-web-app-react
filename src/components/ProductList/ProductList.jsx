@@ -5,72 +5,20 @@ import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram";
 
 const products = [
-    {
-        id: 1,
-        title: 'Product 1',
-        description: 'Description 1',
-        price: 100
-    },
-    {
-        id: 2,
-        title: 'Product 2',
-        description: 'Description 2',
-        price: 200
-    },
-    {
-        id: 3,
-        title: 'Product 3',
-        description: 'Description 3',
-        price: 300
-    },
-    {
-        id: 4,
-        title: 'Product 4',
-        description: 'Description 4',
-        price: 400
-    },
-    {
-        id: 5,
-        title: 'Product 5',
-        description: 'Description 5',
-        price: 500
-    },
-    {
-        id: 6,
-        title: 'Product 6',
-        description: 'Description 6',
-        price: 600
-    },
-    {
-        id: 7,
-        title: 'Product 7',
-        description: 'Description 7',
-        price: 700
-    },
-    {
-        id: 8,
-        title: 'Product 8',
-        description: 'Description 8',
-        price: 800
-    },
-    {
-        id: 9,
-        title: 'Product 9',
-        description: 'Description 9',
-        price: 900
-    },
-    {
-        id: 10,
-        title: 'Product 10',
-        description: 'Description 10',
-        price: 1000
-    }
-];
+    {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
+    {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая'},
+    {id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые'},
+    {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
+    {id: '5', title: 'Джинсы 3', price: 5000, description: 'Синего цвета, прямые'},
+    {id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая'},
+    {id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые'},
+    {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
+]
 
-const getTotalPrice = (items) => {
+const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
-        return acc + item.price;
-    }, 0);
+        return acc += item.price
+    }, 0)
 }
 
 const ProductList = () => {
@@ -91,7 +39,6 @@ const ProductList = () => {
             },
             body: JSON.stringify(data)
         })
-
     }, [queryId, addedItems])
 
     useEffect(()=>{
